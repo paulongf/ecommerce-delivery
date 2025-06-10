@@ -14,7 +14,7 @@ export const sellerLogin = async (req, res) => {
                 maxAge: 7 * 24 * 60 * 60 * 1000, // Cookie expiration time
             });
 
-            return res.json({succerr: true, message: "Logged In"})
+            return res.json({success: true, message: "Logged In"})
     }else{
         return res.json({success: false, message: "Invalid Credentials"})
     }
