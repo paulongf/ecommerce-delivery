@@ -3,10 +3,13 @@ import express from 'express';
 import cors from 'cors';
 import connectDB from './configs/db.js';
 import 'dotenv/config';
-import userRouter from './routes/userRouter.js';
-import sellerRouter from './routes/sellerRouter.js';
-import productRouter from './routes/productRouter.js'
-import connectCloudinary from './configs/cloudinary.js'
+import userRouter from './routes/userRoute.js';
+import sellerRouter from './routes/sellerRoute.js';
+import productRouter from './routes/productRoute.js';
+import connectCloudinary from './configs/cloudinary.js';
+import cartRouter from './routes/cartRoute.js';
+import addressRouter from './routes/addresRoute.js';
+import orderRouter from './routes/orderRoute.js'
 
 
 const app = express();
@@ -26,7 +29,10 @@ app.use(cors({origin: allowedOrigins, credentials: true}))
 app.get('/', (req, res) => res.send("API is Working"));
 app.use('/api/user', userRouter);
 app.use('/api/seller', sellerRouter);
-app.use('/api/product', productRouter)
+app.use('/api/product', productRouter);
+app.use('/api/cart', cartRouter);
+app.use('/api/address', addressRouter);
+app.use('/api/order', orderRouter);
 
 
 app.listen(port, ()=>{
