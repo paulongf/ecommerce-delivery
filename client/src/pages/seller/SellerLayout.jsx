@@ -2,7 +2,9 @@ import React from 'react';
 import { useAppContext } from '../../context/AppContext';
 import { assets } from '../../assets/assets';
 import { Link, NavLink, Outlet } from 'react-router-dom';
+
 import toast from 'react-hot-toast';
+
 
 
 
@@ -24,6 +26,7 @@ const SellerLayout = () => {
         } catch (error) {
             toast.error(error.message)
         };
+
     }
 
 
@@ -42,7 +45,9 @@ const SellerLayout = () => {
                 </Link>
                 <div className="flex items-center gap-5 text-gray-500">
                     <p>Hi! Admin</p>
+
                     <button onClick={logout} className='border cursor-pointer rounded-full text-sm px-4 py-1'>Logout</button>
+
                 </div>
             </div>
             <div className='flex'>

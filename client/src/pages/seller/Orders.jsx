@@ -19,6 +19,7 @@ const Orders = () => {
     } catch (error) {
         toast.error(error.message)
     }
+
   };
 
   useEffect(()=> {

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAppContext } from '../context/AppContext';
 import toast from 'react-hot-toast';
 
+
 const Login = () => {
      const [state, setState] = useState("login");
     const [name, setName] = useState("");
@@ -26,6 +27,7 @@ const Login = () => {
         } catch (error) {
             toast.error(error.message)
         }
+
     }
   return (
     <div onClick={()=> setShowUserLogin(false)} className='fixed top-0 bottom-0 left-0 right-0 z-30 flex items-center text-sm text-gray-600 bg-black/50'>

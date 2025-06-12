@@ -36,6 +36,7 @@ export const AppContextProvider = ({children})=>{
         }
     }
 
+
     // Fetch User Auth Status, User Data and Cart Items
     const fetchUser = async ()=>{
         try {
@@ -63,6 +64,7 @@ export const AppContextProvider = ({children})=>{
         } catch (error) {
             toast.error(data.message)
         }
+
     }
 
     // Add Product to Cart
@@ -124,6 +126,7 @@ export const AppContextProvider = ({children})=>{
     useEffect(()=>{
         fetchProducts()
         fetchSeller();
+
         fetchUser();
     }, []);
 
@@ -148,11 +151,13 @@ export const AppContextProvider = ({children})=>{
     }
 }, [cartItems, user]);
 
+
     const value = {navigate, user, setUser, isSeller, 
         setIsSeller, showUserLogin, setShowUserLogin, products,
         currency, addToCart, updateCartItem, removeFromCart, cartItems,
         searchQuery, setSearchQuery, getCartAmount, getCartCount, axios,
         fetchProducts, fetchUser, setCartItems
+
         
     };
 
