@@ -10,6 +10,7 @@ const Navbar = () => {
     const [open, setOpen] = React.useState(false);
     const {user, setUser, setShowUserLogin, navigate, 
         setSearchQuery, searchQuery, getCartCount, axios
+
     } = useAppContext();
 
 

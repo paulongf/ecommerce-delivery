@@ -3,6 +3,7 @@ import { assets, categories } from '../../assets/assets';
 import { useAppContext } from '../../context/AppContext';
 import toast from 'react-hot-toast';
 
+
 const AddProducts = () => {
 
   const [files, setFiles] = useState([]);
@@ -49,6 +50,7 @@ const AddProducts = () => {
     } catch (error) {
         toast.error(error.message);
     }
+
   }
 
     return (

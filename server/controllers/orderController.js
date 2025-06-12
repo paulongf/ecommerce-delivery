@@ -4,6 +4,7 @@ import User from "../models/User.js";
 import stripe from 'stripe'
 
 
+
 // Place Order COD: /api/order/cod
 export const placeOrderCOD = async (req, res)=>{
     try {
@@ -33,6 +34,7 @@ export const placeOrderCOD = async (req, res)=>{
         return res.json({ success: false, message: error.message });
     }
 }
+
 
 
 // Place Order Stripe : /api/order/stripe
@@ -161,6 +163,7 @@ export const stripeWebhooks = async (request, response)=>{
     }
     response.json({received: true});
 }
+
 
 
 // Get Orders by User ID: /api/order/user

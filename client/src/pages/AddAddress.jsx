@@ -3,6 +3,7 @@ import { assets } from '../assets/assets'
 import { useAppContext } from '../context/AppContext'
 import toast from 'react-hot-toast'
 
+
 // Input Field Component
 const InputField = ({type, placeholder, name, handleChange, address})=>(
     <input
@@ -17,7 +18,9 @@ const InputField = ({type, placeholder, name, handleChange, address})=>(
 
 const AddAddress = () => {
 
+
     const {axios, user, navigate} = useAppContext();
+
 
     const [address, setAddress] = useState({
         firstName: '',
@@ -41,6 +44,7 @@ const AddAddress = () => {
     }
 
     const onSubmitHandler = async (e)=>{
+
         try {
             e.preventDefault();
             const { data } = await axios.post('/api/address/add', {
@@ -65,6 +69,7 @@ const AddAddress = () => {
             navigate('/cart')
         }
     },[user])
+
 
   return (
     <div className='mt-16 bp-16'>

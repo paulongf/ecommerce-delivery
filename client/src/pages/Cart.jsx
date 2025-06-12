@@ -3,6 +3,7 @@ import { useAppContext } from '../context/AppContext'
 import { assets, dummyAddress } from '../assets/assets';
 import toast from 'react-hot-toast';
 
+
 const Cart = () => {
 
     const {products, currency, cartItems, removeFromCart, 
@@ -14,6 +15,7 @@ const Cart = () => {
     const [addresses, setAddresses] = useState([]);
     const [showAddress, setShowAddress] = useState(false)
     const [selectedAddress, setSelectedAddress] = useState(null);
+
     const [paymentOption, setPaymentOption] = useState("COD");
 
     const getCart = ()=> {
@@ -82,6 +84,7 @@ const Cart = () => {
         } catch (error) {
             toast.error(error.message)
         }
+
     }
 
     useEffect(()=> {
@@ -90,11 +93,13 @@ const Cart = () => {
         }
     }, [products, cartItems])
 
+
     useEffect(()=>{
         if(user){
             getUserAddress()
         }
     }, [user])
+
 
     return products.length > 0 && cartItems ? (
         <div className="flex flex-col md:flex-row mt-16">
@@ -169,6 +174,7 @@ const Cart = () => {
                                         {address.street}, {address.city}, {address.state}, {address.country}
                                     </p>
                                     ))}
+
                                 <p onClick={() => navigate("/add-address")} className="text-primary text-center cursor-pointer p-2 hover:bg-primary-dull">
                                     Add address
                                 </p>
