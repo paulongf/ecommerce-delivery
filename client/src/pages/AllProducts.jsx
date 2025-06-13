@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/AppContext'
-import ProductCart from '../components/ProductCard'
+import ProductCard from '../components/ProductCard'
 
 const AllProducts = () => {
 
@@ -26,7 +26,7 @@ const AllProducts = () => {
         md:gap-6 lg:grid-cols-4 mt-6'>
             {
                 filteredProducts.filter((product)=> product.inStock).map((product, index)=> (
-                    <ProductCart key={index} product={product}/>
+                    <ProductCard key={index} product={product}/>
                 ))
             }
         </div>
