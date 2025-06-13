@@ -32,7 +32,7 @@ export const AppContextProvider = ({children})=>{
                 setIsSeller(false)
             }
         } catch (error) {
-            setIsSeller[false]
+            setIsSeller(false)
         }
     }
 
@@ -62,7 +62,7 @@ export const AppContextProvider = ({children})=>{
             }
  
         } catch (error) {
-            toast.error(data.message)
+            toast.error(error.message)
         }
 
     }
@@ -113,15 +113,19 @@ export const AppContextProvider = ({children})=>{
 
     // Get Cart Total Amount
     const getCartAmount = () => {
-        let totalAmount = 0;
-        for(const items in cartItems){
-            let itemInfo = products.find((product)=> product._id === items);
-            if(cartItems[items] > 0){
-                totalAmount += itemInfo.offerPrice * cartItems[items]
-            }
+    let totalAmount = 0;
+
+    for (const itemId in cartItems) {
+        const quantity = cartItems[itemId];
+        const itemInfo = products.find(product => product._id === itemId);
+
+        if (itemInfo && quantity > 0) {
+            totalAmount += itemInfo.offerPrice * quantity;
         }
-        return Math.floor(totalAmount * 100) / 100;
     }
+
+    return Math.floor(totalAmount * 100) / 100;
+}
 
     useEffect(()=>{
         fetchProducts()
