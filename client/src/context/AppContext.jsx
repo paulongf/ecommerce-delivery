@@ -81,6 +81,25 @@ export const AppContextProvider = ({children})=>{
         
     }
 
+    // Delete Product
+    const deleteProduct = async (id) => {
+    try {
+        const confirmed = window.confirm("Are you sure you want to delete this product?");
+        if (!confirmed) return;
+
+        const { data } = await axios.delete(`/api/product/${id}`);
+
+        if (data.success) {
+        toast.success(data.message);
+        fetchProducts(); // Atualiza lista depois de deletar
+        } else {
+        toast.error(data.message);
+        }
+    } catch (error) {
+        toast.error(error?.response?.data?.message || error.message || "Something went wrong");
+    }
+    };
+
     // Update Cart Item Quantity
     const updateCartItem = (itemId, quantity)=>{
         let cartData = structuredClone(cartItems);
@@ -161,7 +180,7 @@ export const AppContextProvider = ({children})=>{
         setIsSeller, showUserLogin, setShowUserLogin, products,
         currency, addToCart, updateCartItem, removeFromCart, cartItems,
         searchQuery, setSearchQuery, getCartAmount, getCartCount, axios,
-        fetchProducts, fetchUser, setCartItems
+        fetchProducts, fetchUser, setCartItems, deleteProduct
 
         
     };

@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 const ProductList = () => {
   const { products, currency, axios, fetchProducts } = useAppContext();
   const [updatingId, setUpdatingId] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
   const toggleStock = async (id, inStock) => {
     try {
@@ -24,6 +25,26 @@ const ProductList = () => {
     }
   };
 
+  const deleteProduct = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this product?");
+    if (!confirmed) return;
+
+    try {
+      setDeletingId(id);
+      const { data } = await axios.delete(`/api/product/${id}`);
+      if (data.success) {
+        toast.success(data.message);
+        fetchProducts();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error.message || "Failed to delete product");
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   return (
     <div className="no-scrollbar flex-1 h-[95vh] overflow-y-scroll flex flex-col justify-between">
       <div className="w-full md:p-10 p-4">
@@ -37,6 +58,7 @@ const ProductList = () => {
                   <th className="px-4 py-3 font-semibold truncate whitespace-nowrap">Category</th>
                   <th className="px-4 py-3 font-semibold truncate whitespace-nowrap hidden md:table-cell">Selling Price</th>
                   <th className="px-4 py-3 font-semibold truncate whitespace-nowrap">In Stock</th>
+                  <th className="px-4 py-3 font-semibold truncate whitespace-nowrap">Actions</th>
                 </tr>
               </thead>
               <tbody className="text-sm text-gray-500">
@@ -62,11 +84,20 @@ const ProductList = () => {
                           checked={product.inStock}
                           type="checkbox"
                           className="sr-only peer"
-                          disabled={updatingId === product._id}
+                          disabled={updatingId === product._id || deletingId === product._id}
                         />
                         <div className="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200"></div>
                         <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
                       </label>
+                    </td>
+                    <td className="px-4 py-3">
+                      <button
+                        disabled={deletingId === product._id || updatingId === product._id}
+                        onClick={() => deleteProduct(product._id)}
+                        className="text-red-600 cursor-pointer border border-gray-200 p-2 rounded-2xl hover:text-red-800 font-semibold"
+                      >
+                        {deletingId === product._id ? 'Deleting...' : 'Delete'}
+                      </button>
                     </td>
                   </tr>
                 ))}
