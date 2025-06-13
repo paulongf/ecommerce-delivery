@@ -117,15 +117,16 @@ export const AppContextProvider = ({children})=>{
 
     for (const itemId in cartItems) {
         const quantity = cartItems[itemId];
-        const itemInfo = products.find(product => product._id === itemId);
+        const itemInfo = products?.find(product => String(product._id) === String(itemId));
 
-        if (itemInfo && quantity > 0) {
+        if (itemInfo?.offerPrice && quantity > 0) {
             totalAmount += itemInfo.offerPrice * quantity;
         }
     }
 
-    return Math.floor(totalAmount * 100) / 100;
-}
+        return Math.floor(totalAmount * 100) / 100;
+    }
+
 
     useEffect(()=>{
         fetchProducts()
