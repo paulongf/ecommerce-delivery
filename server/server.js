@@ -30,7 +30,10 @@ app.post('/stripe', express.raw({type: 'application/json'}), stripeWebhooks)
 // Middleware configuration
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: allowedOrigins, credentials: true}))
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true 
+}));
 
 app.get('/', (req, res) => res.send("API is Working"));
 app.use('/api/user', userRouter);
