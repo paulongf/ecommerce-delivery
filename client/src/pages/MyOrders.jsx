@@ -67,7 +67,7 @@ const MyOrders = () => {
                   </div>
                   <div className='ml-4'>
                     <h2 className='text-xl font-medium text-gray-800'>
-                      {item.product?.name || '[Produto removido]'}
+                      {item.product?.name || '[Deleted Product]'}
                     </h2>
                     <p>Category: {item.product?.category || 'N/A'}</p>
                   </div>

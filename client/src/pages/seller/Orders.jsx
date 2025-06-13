@@ -54,7 +54,7 @@ const Orders = () => {
               <div className="flex flex-col gap-1">
                 {order.items.map((item, idx) => (
                 <p key={idx} className="font-medium truncate">
-                  {item.product ? item.product.name : "[Produto removido]"}{' '}
+                  {item.product ? item.product.name : "[Deleted Product]"}{' '}
                   <span className="text-primary">x {item.quantity}</span>
                 </p>
               ))}
