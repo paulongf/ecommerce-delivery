@@ -21,7 +21,7 @@ await connectDB();
 await connectCloudinary();
 
 // Allow multiple origins
-const allowedOrigins = ['http://localhost:5173']
+const allowedOrigins = ['http://localhost:5173', 'https://ecommerce-delivery.vercel.app']
 
 
 app.post('/stripe', express.raw({type: 'application/json'}), stripeWebhooks)
@@ -31,7 +31,7 @@ app.post('/stripe', express.raw({type: 'application/json'}), stripeWebhooks)
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://ecommerce-delivery.vercel.app'],
+  origin: allowedOrigins,
   credentials: true
 }));
 
